@@ -70,9 +70,10 @@ local function results_formatter(opts)
 		local _, hl_group = utils.get_devicons(".terminal", false)
 
 		local bufnr_leading_spaces = opts.max_bufnr_width
-				and string.rep(" ", opts.max_bufnr_width - #tostring(entry.bufnr))
-			or "" -- for right aligning bufnr column
-		local state_leading_spaces = opts.flag_exists and #entry.state == 1 and " " or "" -- for right aligning state column
+		    and string.rep(" ", opts.max_bufnr_width - #tostring(entry.bufnr))
+		    or ""                                                           -- for right aligning bufnr column
+		local state_leading_spaces = opts.flag_exists and #entry.state == 1 and " " or
+		""                                                                  -- for right aligning state column
 		local displayer_col_vals = {
 			bufname = { display_bufname, "TelescopeResultsIdentifier" },
 			bufnr = { bufnr_leading_spaces .. tostring(entry.bufnr), "TelescopeResultsNumber" },
@@ -116,7 +117,7 @@ function M.displayer(opts)
 			ordinal = ordinal_values[config.search.field], -- for filtering in telescope search
 			display = make_display,
 			bufnr = entry.bufnr,
-			filename = entry._bufname,
+			filename = entry._term_name,
 			state = entry._state,
 			term_name = entry._term_name,
 		}, opts)
